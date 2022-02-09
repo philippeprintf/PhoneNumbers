@@ -12,6 +12,7 @@ import com.phonenumbers.model.Customer;
 import com.phonenumbers.repository.CustomerRepository;
 import com.phonenumbers.service.CustomerService;
 import com.phonenumbers.service.PhoneNumberCategorizerService;
+import com.phonenumbers.strategy.impl.CategorizeByCountryCode;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -30,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	private CustomerDTO buildDTO(Customer customer) {
 		CustomerDTO customerDTO = new CustomerDTO(customer);
-		customerDTO.setPhoneNumberDTO(phoneNumberCategorizerService.categorize(customer.getPhone()));
+		customerDTO.setPhoneNumberDTO(phoneNumberCategorizerService.categorize(customer.getPhone(), new CategorizeByCountryCode()));
 		return customerDTO;
 	}
 
@@ -41,14 +42,14 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		if (!StringUtils.isBlank(countryName)) {
 			customers = customers.stream().filter(
-					customer -> customer.getPhoneNumberDTO().getCountryDTO().getName().equalsIgnoreCase(countryName))
+					customer -> customer.getPhoneNumber().getCountry().getName().equalsIgnoreCase(countryName))
 					.collect(Collectors.toList());
 		}
 		
 		if (!StringUtils.isBlank(phoneNumberState)) {
 			Boolean isPhoneValid = "valid".equalsIgnoreCase(phoneNumberState);
 			customers = customers.stream()
-					.filter(customer -> isPhoneValid.equals(customer.getPhoneNumberDTO().isNumberValid()))
+					.filter(customer -> isPhoneValid.equals(customer.getPhoneNumber().isNumberValid()))
 					.collect(Collectors.toList());
 		}
 		

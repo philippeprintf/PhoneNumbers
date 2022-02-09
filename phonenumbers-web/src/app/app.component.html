@@ -1,1 +1,44 @@
-{{customers}}
+<fieldset>
+    <div class="row">
+        <div class="col-md-2">
+            <label>Country</label>
+            <p-dropdown id="countryDropdown" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="Country"></p-dropdown>
+        </div>
+        <div class="col-md-2">
+            <label>State</label>
+            <p-dropdown id="stateDropdown" [options]="states" [(ngModel)]="selectedState" optionLabel="State"></p-dropdown>
+        </div>
+        <div class="col-md-2">
+            <p-button label="Search" (onClick)="search()"></p-button>
+        </div>
+    </div>
+</fieldset>
+
+<fieldset>
+    <div class="row">
+        <div class="col-md-6">
+            <p-table [value]="customers" responsiveLayout="scroll">
+                <ng-template pTemplate="header">
+                    <tr style="text-align: left;">
+                        <th>Id</th>
+                        <th>Customer</th>
+                        <th>Country</th>
+                        <th>State</th>
+                        <th>Phone Code</th>
+                        <th>Phone Number</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-customer>
+                    <tr>
+                        <td>{{customer.id}}</td>
+                        <td>{{customer.name}}</td>
+                        <td>{{customer.phoneNumber?.country.name}}</td>
+                        <td>{{customer.phoneNumber?.numberValid}}</td>
+                        <td>{{customer.phoneNumber?.country.phoneCode}}</td>
+                        <td>{{customer.phoneNumber?.number}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</fieldset>

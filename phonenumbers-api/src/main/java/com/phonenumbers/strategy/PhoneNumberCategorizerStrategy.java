@@ -1,9 +1,9 @@
-package com.phonenumbers.strategies;
+package com.phonenumbers.strategy;
 
 import com.phonenumbers.dto.PhoneNumberDTO;
 
 public interface PhoneNumberCategorizerStrategy {
 	
-	void categorize(PhoneNumberDTO phoneNumberDTO);
+	PhoneNumberDTO categorize(String phoneNumber);
 
 }

@@ -15,7 +15,7 @@ public class CustomerDTO implements Serializable {
 	
 	private Long id;
 	private String name;
-	private PhoneNumberDTO phoneNumberDTO;
+	private PhoneNumberDTO phoneNumber;
 
 	public Long getId() {
 		return id;
@@ -29,11 +29,11 @@ public class CustomerDTO implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public PhoneNumberDTO getPhoneNumberDTO() {
-		return phoneNumberDTO;
+	public PhoneNumberDTO getPhoneNumber() {
+		return phoneNumber;
 	}
-	public void setPhoneNumberDTO(PhoneNumberDTO phoneNumberDTO) {
-		this.phoneNumberDTO = phoneNumberDTO;
+	public void setPhoneNumberDTO(PhoneNumberDTO phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 	
 	

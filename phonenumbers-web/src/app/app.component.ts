@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from './domain/customer';
-import { PhoneNumbersService } from './serivces/phone-numbers.service';
+import { PhoneNumbersService } from './services/phone-numbers.service';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +9,20 @@ import { PhoneNumbersService } from './serivces/phone-numbers.service';
 })
 export class AppComponent implements OnInit {
 
+  countries: string[] = ['Cameroon', 'Ethiopia', 'Morocco', 'Mozambique', 'Uganda'];
+  states: string[] = ['Valid', 'Not valid'];
+  selectedCountry = '';
+  selectedState = '';
   customers: Customer[] = [];
 
   constructor(private phoneNumbersService: PhoneNumbersService) { }
   
   ngOnInit(): void {
-    this.phoneNumbersService.findByFilters('', '').subscribe({
+    this.search();
+  }
+
+  search(): void {
+    this.phoneNumbersService.findByFilters(this.selectedCountry, this.selectedState).subscribe({
       next: (data) => this.customers = data,
       error: (error) => console.log(error)
     });

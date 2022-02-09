@@ -7,7 +7,7 @@ public class PhoneNumberDTO implements Serializable {
 	private static final long serialVersionUID = 153401947320480766L;
 	
 	private String number;
-	private CountryDTO countryDTO;
+	private CountryDTO country;
 	private boolean isNumberValid;
 	
 	public String getNumber() {
@@ -16,11 +16,11 @@ public class PhoneNumberDTO implements Serializable {
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	public CountryDTO getCountryDTO() {
-		return countryDTO;
+	public CountryDTO getCountry() {
+		return country;
 	}
-	public void setCountryDTO(CountryDTO countryDTO) {
-		this.countryDTO = countryDTO;
+	public void setCountry(CountryDTO country) {
+		this.country = country;
 	}
 	public boolean isNumberValid() {
 		return isNumberValid;

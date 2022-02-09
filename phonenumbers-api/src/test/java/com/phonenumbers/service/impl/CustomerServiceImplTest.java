@@ -2,10 +2,8 @@ package com.phonenumbers.service.impl;
 
 import static com.phonenumbers.mock.CustomerMocker.*;
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
 
 import java.util.List;
 
@@ -20,6 +18,7 @@ import com.phonenumbers.enums.CountryEnum;
 import com.phonenumbers.mock.PhoneNumberMocker;
 import com.phonenumbers.repository.CustomerRepository;
 import com.phonenumbers.service.PhoneNumberCategorizerService;
+import com.phonenumbers.strategy.PhoneNumberCategorizerStrategy;
 
 @RunWith(SpringRunner.class)
 public class CustomerServiceImplTest {
@@ -40,7 +39,7 @@ public class CustomerServiceImplTest {
 		
 		List<CustomerDTO> customers = service.findAll();
 		
-		verify(phoneNumberCategorizerService, times(1)).categorize(anyString());
+		verify(phoneNumberCategorizerService, times(1)).categorize(anyString(), any(PhoneNumberCategorizerStrategy.class));
 		assertNotNull(customers);
 	}
 	
@@ -48,13 +47,13 @@ public class CustomerServiceImplTest {
 	public void testFindByFilters() {
 		
 		when(customerRepository.findAll()).thenReturn(CUSTOMER_ENTITY_LIST);
-		when(phoneNumberCategorizerService.categorize(anyString())).thenReturn(PhoneNumberMocker.PHONE_NUMBER_CAMEROON_VALID_DTO);
+		when(phoneNumberCategorizerService.categorize(anyString(), any(PhoneNumberCategorizerStrategy.class))).thenReturn(PhoneNumberMocker.PHONE_NUMBER_CAMEROON_VALID_DTO);
 		
 		List<CustomerDTO> customers = service.findByFilters(CountryEnum.CAMEROON.getName(), "valid");
 		
 		customers.stream().forEach(customer -> {
-			assertEquals(CountryEnum.CAMEROON.getName(), customer.getPhoneNumberDTO().getCountryDTO().getName());
-			assertTrue(customer.getPhoneNumberDTO().isNumberValid());
+			assertEquals(CountryEnum.CAMEROON.getName(), customer.getPhoneNumber().getCountry().getName());
+			assertTrue(customer.getPhoneNumber().isNumberValid());
 		});
 		
 	}
@@ -63,7 +62,7 @@ public class CustomerServiceImplTest {
 	public void testFindByFiltersEmpty() {
 		
 		when(customerRepository.findAll()).thenReturn(CUSTOMER_ENTITY_LIST);
-		when(phoneNumberCategorizerService.categorize(anyString())).thenReturn(PhoneNumberMocker.PHONE_NUMBER_CAMEROON_VALID_DTO);
+		when(phoneNumberCategorizerService.categorize(anyString(), any(PhoneNumberCategorizerStrategy.class))).thenReturn(PhoneNumberMocker.PHONE_NUMBER_CAMEROON_VALID_DTO);
 		
 		List<CustomerDTO> customers = service.findByFilters(null, null);
 		

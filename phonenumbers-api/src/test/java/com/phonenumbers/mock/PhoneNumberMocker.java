@@ -8,7 +8,7 @@ public class PhoneNumberMocker {
 	
 	private static PhoneNumberDTO mockPhoneNumberCameroonValidDTO() {
 		PhoneNumberDTO phoneNumberDTO = new PhoneNumberDTO();
-		phoneNumberDTO.setCountryDTO(CountryMocker.COUNTRY_CAMEROON_DTO);
+		phoneNumberDTO.setCountry(CountryMocker.COUNTRY_CAMEROON_DTO);
 		phoneNumberDTO.setNumber(CustomerMocker.CUSTOMER_ENTITY.getPhone());
 		phoneNumberDTO.setNumberValid(true);
 		return phoneNumberDTO;
