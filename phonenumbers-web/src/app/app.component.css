@@ -1,4 +1,9 @@
-.table-size {
-    width: 50%;
-    height: 50%;
+:host ::ng-deep .p-dropdown {
+    width: 100%;
+  }
+
+.footer {
+    float: right;
+    margin-top: 1%;
+    margin-bottom: 1%;
 }

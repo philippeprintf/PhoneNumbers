@@ -6,6 +6,9 @@ import { TableModule } from 'primeng/table'
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FieldsetModule} from 'primeng/fieldset';
+
 
 @NgModule({
   declarations: [
@@ -16,8 +19,10 @@ import { DropdownModule } from 'primeng/dropdown';
     HttpClientModule,
     TableModule,
     DropdownModule,
+    BrowserAnimationsModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    FieldsetModule
   ],
   providers: [],
   bootstrap: [AppComponent]

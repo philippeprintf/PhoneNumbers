@@ -1,31 +1,35 @@
-<fieldset>
-    <div class="row">
-        <div class="col-md-2">
-            <label>Country</label>
-            <p-dropdown id="countryDropdown" [options]="countries" [(ngModel)]="selectedCountry" optionLabel="Country"></p-dropdown>
-        </div>
-        <div class="col-md-2">
-            <label>State</label>
-            <p-dropdown id="stateDropdown" [options]="states" [(ngModel)]="selectedState" optionLabel="State"></p-dropdown>
-        </div>
-        <div class="col-md-2">
-            <p-button label="Search" (onClick)="search()"></p-button>
-        </div>
-    </div>
-</fieldset>
-
-<fieldset>
+<p-fieldset legend="Filters">
     <div class="row">
         <div class="col-md-6">
+            <b>Country:&nbsp;</b>
+            <p-dropdown id="countryDropdown" [options]="countries" [(ngModel)]="selectedCountry" placeholder="Select..."></p-dropdown>
+        </div>
+        <div class="col-md-6">
+            <b>State:&nbsp;</b>
+            <p-dropdown id="stateDropdown" [options]="states" [(ngModel)]="selectedState" placeholder="Select..."></p-dropdown>
+        </div>
+    </div>
+    <div class="row footer">
+        <div class="col-md-12">
+            <button pButton icon="pi pi-search" label="Search" (click)="search()" ></button>
+            &nbsp;
+            <button pButton class="p-button-secondary" label="Clear" (click)="clear()"></button>
+        </div>
+    </div>
+</p-fieldset>
+
+<p-fieldset legend="Results">
+    <div class="row">
+        <div class="col-md-12">
             <p-table [value]="customers" responsiveLayout="scroll">
                 <ng-template pTemplate="header">
                     <tr style="text-align: left;">
                         <th>Id</th>
                         <th>Customer</th>
                         <th>Country</th>
-                        <th>State</th>
                         <th>Phone Code</th>
                         <th>Phone Number</th>
+                        <th>State</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-customer>
@@ -33,12 +37,12 @@
                         <td>{{customer.id}}</td>
                         <td>{{customer.name}}</td>
                         <td>{{customer.phoneNumber?.country.name}}</td>
-                        <td>{{customer.phoneNumber?.numberValid}}</td>
                         <td>{{customer.phoneNumber?.country.phoneCode}}</td>
                         <td>{{customer.phoneNumber?.number}}</td>
+                        <td>{{customer.phoneNumber?.numberValid ? 'Valid' : 'Not valid'}}</td>
                     </tr>
                 </ng-template>
             </p-table>
         </div>
     </div>
-</fieldset>
+</p-fieldset>

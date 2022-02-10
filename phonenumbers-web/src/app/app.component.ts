@@ -10,6 +10,13 @@ import { PhoneNumbersService } from './services/phone-numbers.service';
 export class AppComponent implements OnInit {
 
   countries: string[] = ['Cameroon', 'Ethiopia', 'Morocco', 'Mozambique', 'Uganda'];
+//   countries = [
+//     {name: 'New York', code: 'NY'},
+//     {name: 'Rome', code: 'RM'},
+//     {name: 'London', code: 'LDN'},
+//     {name: 'Istanbul', code: 'IST'},
+//     {name: 'Paris', code: 'PRS'}
+// ];
   states: string[] = ['Valid', 'Not valid'];
   selectedCountry = '';
   selectedState = '';
@@ -26,6 +33,11 @@ export class AppComponent implements OnInit {
       next: (data) => this.customers = data,
       error: (error) => console.log(error)
     });
+  }
+
+  clear(): void {
+    this.selectedCountry = '';
+    this.selectedState = '';
   }
 
 }
