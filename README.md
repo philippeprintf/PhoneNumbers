@@ -8,6 +8,6 @@ From command line, type:
 
 	docker-compose up
 
-Next, open the url on you web browser:
+Next, open the url on your web browser:
 
 	http://localhost:4200
