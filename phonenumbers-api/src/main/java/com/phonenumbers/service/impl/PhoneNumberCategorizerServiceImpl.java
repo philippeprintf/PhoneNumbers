@@ -14,5 +14,4 @@ public class PhoneNumberCategorizerServiceImpl implements PhoneNumberCategorizer
 		return strategy.categorize(phoneNumber);
 	}
 
-
 }

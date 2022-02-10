@@ -36,8 +36,8 @@
                     <tr>
                         <td>{{customer.id}}</td>
                         <td>{{customer.name}}</td>
-                        <td>{{customer.phoneNumber?.country.name}}</td>
-                        <td>{{customer.phoneNumber?.country.phoneCode}}</td>
+                        <td>{{customer.phoneNumber?.country?.name}}</td>
+                        <td>{{customer.phoneNumber?.country?.phoneCode}}</td>
                         <td>{{customer.phoneNumber?.number}}</td>
                         <td>{{customer.phoneNumber?.numberValid ? 'Valid' : 'Not valid'}}</td>
                     </tr>

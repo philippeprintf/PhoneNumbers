@@ -7,9 +7,9 @@ import { Constants } from '../util/constants';
 @Injectable({
   providedIn: 'root'
 })
-export class PhoneNumbersService {
+export class CustomerService {
 
-  private url = Constants.backendUrl;
+  private url = Constants.backendUrl + 'v1/customer/';
 
   constructor(private httpClient: HttpClient) { }
 

@@ -13,13 +13,13 @@ import com.phonenumbers.dto.CustomerDTO;
 import com.phonenumbers.service.CustomerService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1/customer")
 public class CustomerController {
 	
 	@Autowired
 	private CustomerService customerService;
 	
-	@GetMapping()
+	@GetMapping
 	public ResponseEntity<List<CustomerDTO>> findAll() {
 		return ResponseEntity.ok(customerService.findAll());
 	}

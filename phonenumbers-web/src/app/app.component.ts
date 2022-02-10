@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from './domain/customer';
-import { PhoneNumbersService } from './services/phone-numbers.service';
+import { CountryService } from './services/country.service';
+import { CustomerService } from './services/customer.service';
 
 @Component({
   selector: 'app-root',
@@ -9,27 +10,35 @@ import { PhoneNumbersService } from './services/phone-numbers.service';
 })
 export class AppComponent implements OnInit {
 
-  countries: string[] = ['Cameroon', 'Ethiopia', 'Morocco', 'Mozambique', 'Uganda'];
-//   countries = [
-//     {name: 'New York', code: 'NY'},
-//     {name: 'Rome', code: 'RM'},
-//     {name: 'London', code: 'LDN'},
-//     {name: 'Istanbul', code: 'IST'},
-//     {name: 'Paris', code: 'PRS'}
-// ];
-  states: string[] = ['Valid', 'Not valid'];
+  countries: string[] = [];
+  states: string[] = [];
   selectedCountry = '';
   selectedState = '';
   customers: Customer[] = [];
 
-  constructor(private phoneNumbersService: PhoneNumbersService) { }
+  constructor(
+    private customerService: CustomerService,
+    private countryService: CountryService
+    ) { }
   
   ngOnInit(): void {
+    this.loadFilters();
     this.search();
   }
 
+  private loadFilters(): void {
+
+    this.countryService.getCountryNameList().subscribe({
+      next: (data) => this.countries = data,
+      error: (error) => console.log(error)
+    });
+
+    this.states = ['Valid', 'Not valid'];
+    
+  }
+
   search(): void {
-    this.phoneNumbersService.findByFilters(this.selectedCountry, this.selectedState).subscribe({
+    this.customerService.findByFilters(this.selectedCountry, this.selectedState).subscribe({
       next: (data) => this.customers = data,
       error: (error) => console.log(error)
     });
