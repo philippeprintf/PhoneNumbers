@@ -13,7 +13,7 @@ import com.phonenumbers.dto.CustomerDTO;
 import com.phonenumbers.service.CustomerService;
 
 @RestController
-@RequestMapping("/api/v1/customer")
+@RequestMapping("/v1/customer")
 public class CustomerController {
 	
 	@Autowired

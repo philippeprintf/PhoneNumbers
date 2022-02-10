@@ -1,0 +1,27 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+version: '3'
+
+services:
+
+  phonenumbers-api:
+    build: ./phonenumbers-api
+    container_name: phonenumbers-api
+    ports:
+      - 8080:8080 # Forward the exposed port 8080 on the container to port 8080 on the host machine
+    networks:
+      - phonenumbers
+    tty: true
+
+  phonenumbers-web:
+    build: ./phonenumbers-web
+    container_name: phonenumbers-web
+    ports:
+      - 4200:4200
+    links:
+      - phonenumbers-api
+    networks:
+      - phonenumbers
+    tty: true
+
+networks:
+  phonenumbers:
