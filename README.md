@@ -2,7 +2,7 @@
 
 Web Application aimed to categorize and validate international phone numbers. Built on Java 8 and Angular 13.
 
-###How to run?
+### How to run?
 
 From command line, type:
 
