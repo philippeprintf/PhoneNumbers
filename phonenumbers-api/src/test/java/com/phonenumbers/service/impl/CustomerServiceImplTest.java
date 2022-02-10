@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.phonenumbers.dto.CustomerDTO;
 import com.phonenumbers.enums.CountryEnum;
@@ -20,7 +20,7 @@ import com.phonenumbers.repository.CustomerRepository;
 import com.phonenumbers.service.PhoneNumberCategorizerService;
 import com.phonenumbers.strategy.PhoneNumberCategorizerStrategy;
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class CustomerServiceImplTest {
 	
 	@Mock
